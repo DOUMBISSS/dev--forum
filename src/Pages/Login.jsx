@@ -40,7 +40,7 @@ export default function Login ({signUP}){
       email,
       password
     }
-    fetch('http://backdev.mayedo.ci/login',{
+    fetch('https://back-dev-7t8s.onrender.com/login',{
           method:"POST",
           headers :{'Content-Type':"application/json"},
           body: JSON.stringify(dataLogin)

@@ -38,7 +38,7 @@ export default function Register (){
       password,
       password2
     }
-    fetch('http://backdev.mayedo.ci/register',{
+    fetch('https://back-dev-7t8s.onrender.com/register',{
           method:"POST",
           headers :{'Content-Type':"application/json"},
           body: JSON.stringify(registerData)

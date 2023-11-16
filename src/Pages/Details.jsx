@@ -13,7 +13,7 @@ export default function Details () {
     var id = useParams().id;
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:4000/question/${id}`)
+        fetch(`https://back-dev-7t8s.onrender.com/question/${id}`)
         .then((res)=>res.json())
         .then((question)=>{dispatch(AddQuestion(question))})
         .catch(e => { console.log(e)})
@@ -40,7 +40,7 @@ export default function Details () {
          content,
          question_id: id
         }
-        fetch('http://backdev.mayedo.ci/comments',{
+        fetch('https://back-dev-7t8s.onrender.com/comments',{
         method:"POST",
         headers :{'Content-Type':"application/json"},
         body: JSON.stringify(dataComment)

@@ -25,7 +25,7 @@ export default function Accueil (){
         // },[questions])
     
     useEffect(() => {
-        fetch('http://backdev.mayedo.ci/questions')
+        fetch('http://127.0.0.1:4000/questions')
         .then((res)=>res.json())
         .then((questions)=>{dispatch(getAllQuestions(questions))})
         .catch(e => { console.log(e)})

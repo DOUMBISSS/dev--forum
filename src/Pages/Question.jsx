@@ -26,7 +26,7 @@ export default function Question (){
             content,
             categories
         }
-        fetch('http://backdev.mayedo.ci/questions',{
+        fetch('https://back-dev-7t8s.onrender.com/questions',{
             method:"POST",
             headers :{'Content-Type':"application/json"},
             body: JSON.stringify(data)
