@@ -150,7 +150,7 @@ export default function Question (){
 
             </div>
                                     </div>
-                                <Footer/>
+                                {/* <Footer/> */}
         </div>
     )
 }
