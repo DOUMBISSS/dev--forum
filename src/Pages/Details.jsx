@@ -53,17 +53,63 @@ export default function Details () {
     return (
         <div>
             <Navbar/>
-            <main>
-            <div className="w-100 h-100 bg-white">
-                <div className="container">
-                <nav aria-label="breadcrumb">
+           <div className='container'>
+           <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                     <li className="breadcrumb-item"><Link to='/Accueil'>Home</Link></li>
-                        <li className="breadcrumb-item active" aria-current="page">Question / Reponse</li>
+                        <li className="breadcrumb-item active" aria-current="page">Questions / Réponses</li>
                     </ol>
                     </nav>
-                    <div className="row">
-                        <div  key={id}className="col-md-12 col-lg-9">
+           <div className="main--forum">
+                <div className="main--forum--left">
+                    <div className="forum--content">
+                            <Link to='/Accueil' className="link--forum"><p><i class="fa-solid fa-house"></i> Home</p></Link>
+                            <Link to='/Accueil' className="link--forum"><p><i class="fa-solid fa-circle-question"></i> Questions</p></Link>
+                            <Link className="link--forum"><p><i class="fa-solid fa-tags"></i> Tags</p></Link>
+                            <Link className="link--forum"><p><i class="fa-solid fa-user"></i> Users</p></Link>
+                            <Link className="link--forum"><p><i class="fa-solid fa-message"></i> Discussions</p></Link>
+                    </div>
+                            <div className="col-3 col-md-12">
+                                <div className="teams--content">
+                                        <h6 className="teams--content--header">Dev Forum for Teams</h6>
+                                        <p>– Start collaborating and sharing organizational knowledge.</p>
+                                        <div className="teams--content--images">
+                                            <img src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e" alt="" />
+                                        </div>
+                                        <div className="btn--block">
+                                            <button className="btn--create--team">Create your team</button>
+                                        </div>
+                                </div>
+                            </div>
+
+                            <div className="col-3 col-md-12">
+                            <div className="main--part--newsletter">
+                                <div className="newsletter__grid">
+                                    <p>Recevez toute l'actualité devforum.com gratuitement</p>
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+                                        <label for="floatingInput">Email address</label>
+                                    </div>
+                                    <button className="btn--newsletter">Je m'abonne gratuitement</button>
+                                </div>
+                                </div>
+                            </div>
+                            <div className="col-3 col-md-12">
+                                <div className="main__part__social">
+                                    <p className="social--media"><i className="fa-brands fa-facebook"></i></p>
+                                    <p className="social--media"><i className="fa-brands fa-instagram"></i></p>
+                                    <p className="social--media"><i className="fa-brands fa-linkedin"></i></p>
+                                </div>
+                                </div>
+                            <div className="col-3 col-md-12">
+                               <div className="items">
+                               <img src="https://tpc.googlesyndication.com/simgad/3518230291269613696?sqp=4sqPyQQ7QjkqNxABHQAAtEIgASgBMAk4A0DwkwlYAWBfcAKAAQGIAQGdAQAAgD-oAQGwAYCt4gS4AV_FAS2ynT4&rs=AOga4qkweqTwgRh7mQ-o6eNvtrwc4xf1BA" alt="" />
+                               </div>
+                                </div>
+                        </div>
+
+                <div className="main--forum--right">
+                <div  key={id}className="col-md-12 col-lg-9">
                             {/* <span className="question-detail__head">{question.title}</span> */}
                             <div className="question-detail__title">
                                 <div className="d-flex flex-column align-items-center no-underline ">
@@ -118,20 +164,13 @@ export default function Details () {
                             </form>
                         </div>
                     </div>
-                                                                                                                        
-                         <div className="col-md-12 col-lg-3">
-                            <Link to='/Accueil'>
-                                <button className="btn--back">Retour <i className="fa-solid fa-arrow-left"></i></button>
-                            </Link>
-                        </div>
+               
+                    </div>
+                    
 
-                    </div>
-                    </div>
-                    </div>     
-                                                                                                                                                     
-                                                                                                                    
-                    </main>
-                    <Footer/>                                                                                                                                                                           
+            </div>
+           </div>
+                    {/* <Footer/>                                                                                                                                                                            */}
                     </div>
     )
 }
