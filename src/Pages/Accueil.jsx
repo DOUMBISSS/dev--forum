@@ -11,7 +11,8 @@ import Footer from "./Footer";
 export default function Accueil (){
 
     const questions = useSelector(state=>state.questionReducer.questions);
-    const [searchQuestion, setSearchQuestion] = useState();
+    const [searchQuestion, setSearchQuestion] = useState("");
+    const keys = ['title'];
     // const todayDate = new Date(Date.now()).toISOString().slice(0, 10);
     const dispatch = useDispatch();
     
@@ -23,6 +24,8 @@ export default function Accueil (){
         // useEffect (()=>{
         //             console.log(questions)
         // },[questions])
+
+        console.log(searchQuestion)
     
     useEffect(() => {
         fetch('https://back-dev-7t8s.onrender.com/questions')
@@ -47,39 +50,15 @@ export default function Accueil (){
                 </div>
         </div>
             <div className="container">
-                <div className="row">
-                <div className="col-lg-9 col-md-12">
-                <nav  aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><Link to='/Accueil'>Home</Link></li>
-                        <li className="breadcrumb-item active" aria-current="page">Question / Reponse</li>
-                    </ol>
-                </nav>
-                        <div className="main--part--question">
-                            <span><i className="fa-solid fa-earth-africa"></i> {questions.length} questions</span>
-                            <Link to="/question" className="link__question">
-                                <button className="btn--question">Poser une question <i className="fa-solid fa-pen-to-square"></i></button>
-                            </Link>
-                        </div>
-                 
-                    {questions && questions.map((question,id)=> <div key={id} className="card no-border p-3 my-3">
-                            <div className="question">
-                                <h2 className="question__title">
-                                    <Link to={`/details/${question._id}`} className="question__link">{question.title}</Link></h2>
-                                    <p className="question__time">{question.date}</p>
-                                    <p className="question__description my-2">{question.content}</p>
-                                    <div className="d-flex justify-content-between">
-                                      <span className="numbers--question--answers"> <i className="fa-sharp fa-solid fa-comments"></i> {question.comments && question.comments.length} commentaire(s)</span>
-                                        <div className="question__tags"> {question.categories}</div>
-                                    </div>
-                                    <div className="questions__likes">
-                                        <p className="number__likes"><i className="fa-regular fa-thumbs-up"></i> 0 </p>
-                                    </div>
-                            </div>
+                <div className="main--forum">
+                <div className="main--forum--left">
+                    <div className="forum--content">
+                            <Link to='/Accueil' className="link--forum"><p><i class="fa-solid fa-house"></i> Home</p></Link>
+                            <Link to='/Accueil' className="link--forum"><p><i class="fa-solid fa-circle-question"></i> Questions</p></Link>
+                            <Link className="link--forum"><p><i class="fa-solid fa-tags"></i> Tags</p></Link>
+                            <Link className="link--forum"><p><i class="fa-solid fa-user"></i> Users</p></Link>
+                            <Link className="link--forum"><p><i class="fa-solid fa-message"></i> Discussions</p></Link>
                     </div>
-                        )}
-                    </div>
-                        <div className="col-lg-3 col-md-12">
                             <div className="col-3 col-md-12">
                                 <div className="teams--content">
                                         <h6 className="teams--content--header">Dev Forum for Teams</h6>
@@ -118,6 +97,46 @@ export default function Accueil (){
                                </div>
                                 </div>
                         </div>
+
+                <div className="main--forum--right">
+                <nav  aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to='/Accueil'>Home</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">Questions / Réponses</li>
+                    </ol>
+                </nav>
+                        <div className="main--part--question">
+                            <span><i className="fa-solid fa-earth-africa"></i> {questions.length} questions</span>
+                            <Link to="/question" className="link__question">
+                                <button className="btn--question">Poser une question <i className="fa-solid fa-pen-to-square"></i></button>
+                            </Link>
+                        </div>
+                 
+                    {questions && questions.filter((question,_id) => keys.some((key) => {
+                                    if (searchQuestion === ""){
+                                        return question;
+                                    }
+                                    else if (question[key].toLocaleLowerCase().includes(searchQuestion.toLocaleLowerCase())){
+                                        return question;
+                                    }
+                                    return 0})).map((question,id)=> <div key={id} className="card no-border p-3 my-3">
+                            <div className="question">
+                                <h2 className="question__title">
+                                    <Link to={`/details/${question._id}`} className="question__link">{question.title}</Link></h2>
+                                    <p className="question__time">{question.date}</p>
+                                    <p className="question__description my-2">{question.content}</p>
+                                    <div className="d-flex justify-content-between">
+                                      <span className="numbers--question--answers"> <i className="fa-sharp fa-solid fa-comments"></i> {question.comments && question.comments.length} commentaire(s)</span>
+                                        <div className="question__tags"> {question.categories}</div>
+                                    </div>
+                                    <div className="questions__likes">
+                                        <p className="number__likes"><i className="fa-regular fa-thumbs-up"></i> 0 </p>
+                                    </div>
+                            </div>
+                    </div>
+                        )}
+                    </div>
+                    
 
             </div>
             <nav aria-label="...">

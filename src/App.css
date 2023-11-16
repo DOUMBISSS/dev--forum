@@ -458,6 +458,37 @@ main{
   cursor: pointer;
   color: #0069ff;
 }
+.main--forum{
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  /* border: 1px solid coral; */
+}
+.main--forum--left{
+  width: 20%;
+  position: sticky;
+  top: 0;
+  height: 100%;
+  z-index: 1000;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  /* border: 1px solid coral; */
+}
+.main--forum--right{
+  width: 78%;
+  /* border: 1px solid coral; */
+}
+.forum--content{
+  width: 100%;
+  padding: 0.5rem;
+    /* border: 1px solid coral; */
+}
+.link--forum{
+  text-decoration: none;
+  color: #031b4e;
+  font-weight: bold;
+}
 
 @media only screen and (max-width:576px){
   .container--connexion{
@@ -548,6 +579,15 @@ main{
   .display--user--part{
     transition: ease-in-out 1s;
     top: 40px;
+  }
+  .main--forum{
+    width: 100%;
+  }
+  .main--forum--left{
+    display: none;
+  }
+  .main--forum--right{
+    width: 100%;
   }
 
 }
