@@ -28,7 +28,7 @@ export default function Question (){
             categories,
             user_id:id
         }
-        fetch('http://localhost:5000/questions',{
+        fetch('https://back-dev-7t8s.onrender.com/questions',{
             method:"POST",
             headers :{'Content-Type':"application/json"},
             body: JSON.stringify(data)

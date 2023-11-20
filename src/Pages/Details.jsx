@@ -13,7 +13,7 @@ export default function Details () {
     var id = useParams().id;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/question/${id}`)
+        fetch(`https://back-dev-7t8s.onrender.com/${id}`)
         .then((res)=>res.json())
         .then((question)=>{dispatch(AddQuestion(question))})
         .catch(e => { console.log(e)})
@@ -41,7 +41,7 @@ export default function Details () {
          question_id: id,
          user_id:id
         }
-        fetch('http://localhost:5000/comments',{
+        fetch('https://back-dev-7t8s.onrender.com/comments',{
         method:"POST",
         headers :{'Content-Type':"application/json"},
         body: JSON.stringify(dataComment)

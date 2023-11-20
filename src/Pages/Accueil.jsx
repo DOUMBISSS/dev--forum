@@ -29,7 +29,7 @@ export default function Accueil (){
         console.log(questions)
     
     useEffect(() => {
-        fetch('http://localhost:5000/questions')
+        fetch('https://back-dev-7t8s.onrender.com/questions')
         .then((res)=>res.json())
         .then((questions)=>{dispatch(getAllQuestions(questions))})
         .catch(e => { console.log(e)})
