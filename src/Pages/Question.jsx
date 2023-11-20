@@ -1,5 +1,5 @@
 import { useState} from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link,useParams, Navigate, useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 import { useDispatch  } from "react-redux";
 import { AddQuestion } from "../Redux/actions";
@@ -13,6 +13,7 @@ import Navbar from "./Navbar";
 
 export default function Question (){
     const dispatch = useDispatch()
+    var id = useParams().id;
 
     const [title,setTitle]=useState();
     const [content,setContent]=useState();
@@ -24,15 +25,17 @@ export default function Question (){
         const data = {
             title,
             content,
-            categories
+            categories,
+            user_id:id
         }
-        fetch('https://back-dev-7t8s.onrender.com/questions',{
+        fetch('http://localhost:5000/questions',{
             method:"POST",
             headers :{'Content-Type':"application/json"},
             body: JSON.stringify(data)
         }).then((res)=>res.json())
          .then((dataQuestion)=> dispatch(AddQuestion(dataQuestion)))    
         navigate('/Accueil')
+        console.log(data)
     }
 
     const handleform = (event)=>{

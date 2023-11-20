@@ -13,7 +13,7 @@ export default function Details () {
     var id = useParams().id;
 
     useEffect(() => {
-        fetch(`https://back-dev-7t8s.onrender.com/question/${id}`)
+        fetch(`http://localhost:5000/question/${id}`)
         .then((res)=>res.json())
         .then((question)=>{dispatch(AddQuestion(question))})
         .catch(e => { console.log(e)})
@@ -38,9 +38,10 @@ export default function Details () {
         e.preventDefault();
         const dataComment = {
          content,
-         question_id: id
+         question_id: id,
+         user_id:id
         }
-        fetch('https://back-dev-7t8s.onrender.com/comments',{
+        fetch('http://localhost:5000/comments',{
         method:"POST",
         headers :{'Content-Type':"application/json"},
         body: JSON.stringify(dataComment)
@@ -124,11 +125,11 @@ export default function Details () {
 
                                     <hr/>
                                     <div className="mb-4 answers-count ">
-                                        <span className="text-dark-blue font-weight-bold">{question.comments && question.comments.length} reponses</span>
+                                        <span className="text-dark-blue font-weight-bold">{question.comments && question.comments.length} réponse(s)</span>
                                         <span className="d-flex align-items-center">
                                             <img src="https://baroland.netlify.app/img/avatar.png" alt="" width="20" height="20"/>
                                                 <span className="text-black ml-2">
-                                                    {/* {user.name} */}
+                                                {question.user_id?.map((item,_id) => <p key={item._id} className="user__name">{item.name} </p>  )}
                                                     </span>
                                                 </span>
                                     </div>
@@ -138,15 +139,19 @@ export default function Details () {
                                                 <div className="comment__likes-count no-underline">
                                                     <i className="fa-solid fa-heart"></i>
                                                     <span>7</span>
+                                                  
                                                 </div>
                                                     <div className="comment--content">
                                                         <div className="comment--author">
                                                             <div className="comment--author--info">
                                                                 <img src="https://baroland.netlify.app/img/avatar.png" alt="" width="25" height="25"/>
-                                                                {/* <span className="comment--author--name">{comment.author}</span> */}
+                                                                 {question.comments.user_id?.map((item,_id) => <p key={item._id} className="number__likes">{item.name} </p>  )}
                                                             </div>
                                                                 
-                                                                <div className="comment--ago"> <i className="fa-solid fa-clock"></i> il y'a 1min</div>
+                                                                <div className="comment--ago"> 
+                                                                {/* <i className="fa-solid fa-clock"></i>  */}
+                                                                <p> <span className='answ'>Répondu</span>  {new Date(comment.date).toDateString()}</p>
+                                                                </div>
                                                         </div>
                                                                 <div className="comment--text">
                                                                 <p >{comment.content}</p>

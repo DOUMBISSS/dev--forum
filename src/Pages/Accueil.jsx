@@ -20,15 +20,16 @@ export default function Accueil (){
         setSearchQuestion(e.target.value);
       }
 
+      const event = new Date('August 19, 1975 23:15:30');
 
         // useEffect (()=>{
         //             console.log(questions)
         // },[questions])
 
-        console.log(searchQuestion)
+        console.log(questions)
     
     useEffect(() => {
-        fetch('https://back-dev-7t8s.onrender.com/questions')
+        fetch('http://localhost:5000/questions')
         .then((res)=>res.json())
         .then((questions)=>{dispatch(getAllQuestions(questions))})
         .catch(e => { console.log(e)})
@@ -123,14 +124,18 @@ export default function Accueil (){
                             <div className="question">
                                 <h2 className="question__title">
                                     <Link to={`/details/${question._id}`} className="question__link">{question.title}</Link></h2>
-                                    <p className="question__time">{question.date}</p>
+                                    <p className="question__time">{new Date(question.date).toDateString()}</p>
                                     <p className="question__description my-2">{question.content}</p>
                                     <div className="d-flex justify-content-between">
-                                      <span className="numbers--question--answers"> <i className="fa-sharp fa-solid fa-comments"></i> {question.comments && question.comments.length} commentaire(s)</span>
-                                        <div className="question__tags"> {question.categories}</div>
+                                      <div className="question__answer__box">
+                                      <span className="numbers--question--answers"> <i className="fa-sharp fa-solid fa-comments"></i> {question.comments && question.comments.length} commentaire(s) </span>
+                                      <p className="number__likes"><i className="fa-regular fa-thumbs-up"></i> 0 </p>
+                                      </div>
+                                        <p className="question__tags"> {question.categories}</p>
                                     </div>
-                                    <div className="questions__likes">
-                                        <p className="number__likes"><i className="fa-regular fa-thumbs-up"></i> 0 </p>
+                                    <div className="user__container">
+                                    <img src="https://baroland.netlify.app/img/avatar.png" alt="" width="20" height="20"/>
+                                    {question.user_id?.map((item,_id) => <p key={item._id} className="user__name">{item.name} </p>  )}
                                     </div>
                             </div>
                     </div>
